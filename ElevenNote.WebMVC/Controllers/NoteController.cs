@@ -95,6 +95,39 @@ namespace ElevenNote.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var service = CreateNoteService();
+            var model = service.GetNoteById(id);
+
+            new NoteDetail
+            {
+                Content = model.Content,
+                CreatedUtc = model.CreatedUtc,
+                ModifiedUtc = model.ModifiedUtc,
+                NoteId = model.NoteId,
+                Title = model.Title
+            };
+
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateNoteService();
+
+            if (service.DeleteNote(id))
+            {
+                TempData["SaveResult"] = "Note successfully deleted";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Note could not be deleted");
+            return View();
+        }
+
         private NoteService CreateNoteService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
