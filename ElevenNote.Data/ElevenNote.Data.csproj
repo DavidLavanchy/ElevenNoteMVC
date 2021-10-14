@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202110131319177_InitialMigration.Designer.cs">
       <DependentUpon>202110131319177_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110142208542_CategoryFK.cs" />
+    <Compile Include="Migrations\202110142208542_CategoryFK.Designer.cs">
+      <DependentUpon>202110142208542_CategoryFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110131319177_InitialMigration.resx">
       <DependentUpon>202110131319177_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110142208542_CategoryFK.resx">
+      <DependentUpon>202110142208542_CategoryFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
