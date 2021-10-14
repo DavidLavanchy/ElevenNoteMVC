@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,6 +46,14 @@ namespace ElevenNote.WebMVC.Controllers
 
             return View(model);
            
+        }
+
+        public ActionResult Details(int id)
+        {
+            var service = CreateNoteService();
+            var model = service.GetNoteById(id);
+
+            return View(model);
         }
 
         private NoteService CreateNoteService()
