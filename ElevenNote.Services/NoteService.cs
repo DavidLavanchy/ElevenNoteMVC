@@ -35,5 +35,25 @@ namespace ElevenNote.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public IEnumerable<NoteListItem> GetNotes()
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Notes
+                    .Where(e=> e.OwnerId == _userId)
+                    .Select(e =>
+                    new NoteListItem
+                    {
+                        NoteId = e.NoteId,
+                        CreatedUtc = e.CreatedUtc,
+                        Title = e.Title
+                    });
+
+                return query.ToArray();
+            }
+        }
     }
 }
