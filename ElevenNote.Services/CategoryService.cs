@@ -23,6 +23,7 @@ namespace ElevenNote.Services
                 var entity =
                     new Category
                     {
+                        OwnerId = _userId,
                         Description = model.Description,
                         Title = model.Title  
                     };
