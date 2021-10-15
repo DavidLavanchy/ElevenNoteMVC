@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ElevenNote.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ElevenNote.Models.NoteModels
 {
@@ -14,5 +16,6 @@ namespace ElevenNote.Models.NoteModels
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         public int CategoryId { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
     }
 }

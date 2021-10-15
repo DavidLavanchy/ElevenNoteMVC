@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ElevenNote.Models.NoteModels
 {
@@ -17,5 +18,6 @@ namespace ElevenNote.Models.NoteModels
         public string Content { get; set; }
         [Required]
         public int CategoryId { get; set; }
+        public IEnumerable<SelectListItem> Categories { get; set; }
     }
 }

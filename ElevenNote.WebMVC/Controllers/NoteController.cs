@@ -1,4 +1,5 @@
-﻿using ElevenNote.Models.NoteModels;
+﻿using ElevenNote.Data;
+using ElevenNote.Models.NoteModels;
 using ElevenNote.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -13,9 +14,12 @@ namespace ElevenNote.WebMVC.Controllers
     [Authorize]
     public class NoteController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
+
         // GET: Note
         public ActionResult Index()
         {
+
             var service = CreateNoteService();
             var model = service.GetNotes();
             return View(model);
@@ -24,6 +28,12 @@ namespace ElevenNote.WebMVC.Controllers
         //GET: Note/Create
         public ActionResult Create()
         {
+            ViewData["Categories"] = _db.Categories.Select(category => new SelectListItem
+            {
+                Text = category.Title,
+                Value = category.CategoryId.ToString(),
+            });
+
             return View();
         }
 
@@ -32,6 +42,12 @@ namespace ElevenNote.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NoteCreate model)
         {
+            ViewData["Categories"] = _db.Categories.Select(category => new SelectListItem
+            {
+                Text = category.Title,
+                Value = category.CategoryId.ToString(),
+            });
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -50,6 +66,12 @@ namespace ElevenNote.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
+            ViewData["Categories"] = _db.Categories.Select(category => new SelectListItem
+            {
+                Text = category.Title,
+                Value = category.CategoryId.ToString(),
+            });
+
             var service = CreateNoteService();
             var model = service.GetNoteById(id);
 
@@ -58,17 +80,22 @@ namespace ElevenNote.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            var service = CreateNoteService();
-            var detail = service.GetNoteById(id);
 
-            var model =
-                new NoteEdit
-                {
-                    Content = detail.Content,
-                    NoteId = detail.NoteId,
-                    Title = detail.Title,
-                    CategoryId = detail.CategoryId
-                };
+            var detail = _db.Notes.Find(id);
+
+            var model = new NoteEdit
+            {
+                Content = detail.Content,
+                NoteId = detail.NoteId,
+                Title = detail.Title,
+                CategoryId = detail.CategoryId
+            };
+
+            ViewData["Categories"] = _db.Categories.Select(category => new SelectListItem
+            {
+                Text = category.Title,
+                Value = category.CategoryId.ToString(),
+            });
 
             return View(model);
         }
@@ -77,6 +104,12 @@ namespace ElevenNote.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, NoteEdit model)
         {
+            ViewData["Categories"] = _db.Categories.Select(category => new SelectListItem
+            {
+                Text = category.Title,
+                Value = category.CategoryId.ToString(),
+            });
+
             if (ModelState.IsValid)
             {
                 var service = CreateNoteService();

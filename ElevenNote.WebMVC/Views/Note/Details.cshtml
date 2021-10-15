@@ -50,6 +50,14 @@
             @Html.DisplayFor(model => model.ModifiedUtc)
         </dd>
 
+        <dt>
+            Category
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId, ViewData["Categories"].ToString(), new { htmlAttributes = new { @class = "form-control" } })
+        </dd>
+
     </dl>
 </div>
 <p>

@@ -51,7 +51,8 @@ namespace ElevenNote.Services
                         NoteId = e.NoteId,
                         CreatedUtc = e.CreatedUtc,
                         Title = e.Title,
-                        CategoryId = e.CategoryId
+                        CategoryId = e.CategoryId,
+                        
                     });
 
                 return query.ToArray();
@@ -74,7 +75,7 @@ namespace ElevenNote.Services
                         ModifiedUtc = entity.ModifiedUtc,
                         NoteId = entity.NoteId,
                         Title = entity.Title,
-                        CategoryId = entity.CategoryId
+                        CategoryId = entity.CategoryId,
                     };
             }
         }
