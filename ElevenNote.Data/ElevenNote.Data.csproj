@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202110142208542_CategoryFK.Designer.cs">
       <DependentUpon>202110142208542_CategoryFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110181552295_IsStarredProperty.cs" />
+    <Compile Include="Migrations\202110181552295_IsStarredProperty.Designer.cs">
+      <DependentUpon>202110181552295_IsStarredProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110142208542_CategoryFK.resx">
       <DependentUpon>202110142208542_CategoryFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110181552295_IsStarredProperty.resx">
+      <DependentUpon>202110181552295_IsStarredProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
