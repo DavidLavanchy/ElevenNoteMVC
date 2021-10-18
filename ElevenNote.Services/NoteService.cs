@@ -52,7 +52,7 @@ namespace ElevenNote.Services
                         CreatedUtc = e.CreatedUtc,
                         Title = e.Title,
                         CategoryId = e.CategoryId,
-                        
+                        IsStarred = e.IsStarred,
                         
                     });
 
@@ -77,6 +77,7 @@ namespace ElevenNote.Services
                         NoteId = entity.NoteId,
                         Title = entity.Title,
                         CategoryId = entity.CategoryId,
+                        IsStarred = entity.IsStarred,
                     };
             }
         }
@@ -94,6 +95,7 @@ namespace ElevenNote.Services
                 entity.Content = model.Content;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
                 entity.CategoryId = model.CategoryId;
+                entity.IsStarred = model.IsStarred;
 
                 return ctx.SaveChanges() == 1;
             }  
