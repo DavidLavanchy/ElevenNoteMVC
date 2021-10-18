@@ -28,6 +28,9 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
+        @Html.DisplayNameFor(model=> model.IsStarred)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CreatedUtc)
         </th>
         <th></th>
@@ -35,23 +38,52 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoteId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedUtc)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NoteId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.IsStarred)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedUtc)
+    </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
-            </td>
-        </tr>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
+    </td>
+</tr>
     }
 
 </table>
+
+@section scripts{
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("i[data-toggle='star']")
+                .css({ "cursor": "pointer" })
+                .click(function (e) {
+                    var target = $(e.target);
+                    var noteId = target.attr("data-id");
+                    var starSet = target.hasClass("glyphicon-star");
+
+                    $ajax({
+                        method: starSet ? "Delete" : "PUT",
+                        url: "/api/Note" + noteId + "/star",
+                        data: null
+                    })
+                        .done(function (r) {
+                            target.removeClass();
+                            target.addClass("gylphicon " + (starSet ? "glyphicon-star-empty" : "glyphicon-star"));
+                        })
+                        .fail(function (r) {
+                            alert("Failed to change star status");
+                        });
+        });
+    </script>
+    }
