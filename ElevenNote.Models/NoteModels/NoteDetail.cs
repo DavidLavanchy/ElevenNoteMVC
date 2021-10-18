@@ -20,5 +20,6 @@ namespace ElevenNote.Models.NoteModels
         public DateTimeOffset? ModifiedUtc { get; set; }
         public int CategoryId { get; set; }
         public string Categories { get; set; }
+        public bool IsStarred { get; set; }
     }
 }

@@ -17,5 +17,7 @@ namespace ElevenNote.Models.NoteModels
         public DateTimeOffset CreatedUtc { get; set; }
         public int CategoryId { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
+
+        public bool IsStarred { get; set; }
     }
 }
